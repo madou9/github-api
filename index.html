@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container center">
+        <img src="https://desk.zoho.com/DocsDisplay?zgId=675659995&mode=inline&blockId=4f8642de267cbc29548e48bade204834f7f32"
+            alt="logo" class="responsive-img center" width="300">
+        <p class="title">
+            SEARCH GITHUB USER
+        </p>
+        <form action="">
+            <div class="input-field col s10 offset-1">
+                <input placeholder="Search " id="input" type="search" class="validate">
+            </div>
+            <button class="btn white deep-purple-text" type="submit" id="submit">Rechercher
+            </button>
+        </form>
+    </div>
+
+    <div class="row">
+        <div id="searching"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>   document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems);
+        });</script>
+    <script src="app.js"></script>
+</body>
+</html>

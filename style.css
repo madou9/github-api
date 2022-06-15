@@ -1,0 +1,23 @@
+.content-drop {
+    height: 240px;
+    overflow: auto;
+    visibility: hidden;
+}
+
+.content-drop li{
+    display: block;
+    background-color: rgb(247, 247, 247);
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid blueviolet;
+    
+}
+
+.content-drop li a{
+    color: blueviolet;
+}
+
+/* pour afficher les ripos  */
+.activeUrl {
+    visibility: visible !important;
+}
