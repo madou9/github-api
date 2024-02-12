@@ -26,7 +26,7 @@ This web application allows users to search for GitHub users and view their basi
 
 ## Demo
 
-You can view a live demo of the application [here](madou9.github.io/github-api/).
+You can view a live demo of the application [here](https://madou9.github.io/github-api/).
 
 ## Contributing
 
