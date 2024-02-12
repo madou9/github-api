@@ -6,15 +6,15 @@
 
 .content-drop li{
     display: block;
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(58, 56, 56);
     text-align: center;
     padding: 10px 0px;
-    border-bottom: 1px solid blueviolet;
+    border-bottom: 1px solid rgb(238, 238, 238);
     
 }
 
 .content-drop li a{
-    color: blueviolet;
+    color: rgb(237, 234, 240)
 }
 
 /* pour afficher les ripos  */

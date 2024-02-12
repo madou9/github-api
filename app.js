@@ -1,64 +1,66 @@
 const input = document.getElementById('input');
 const submit = document.getElementById('submit');
 const searching = document.getElementById('searching');
-var name = "node";
-const url1 = 'https://api.github.com/users/'
+const url = 'https://api.github.com/users/';
 
-function search(name) {
-    fetch(`${url1}${name}`)
-        .then(response => response.json())
-        .then(respons => {
+function search(username) {
+    fetch(`${url}${username}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('User not found');
+            }
+            return response.json();
+            
+        })
+        .then(user => {
+            console.log('User Data:', user);
+            fetch(`${url}${username}/repos`)
+                .then(response => response.json())
+                .then(repos => {
+                    console.log('Repositories:', repos);
+                    displayUserData(user, repos);
+                });
+        })
+        .catch(error => {
+            alert('User not found.');
+        });
+        console.log(fetch(`${url}${username}/repos`));
+}
 
-        const url = `https://api.github.com/users/${name}/repos`;
-        fetch(`${url}`).then(response => response.json()).then(data => {
-            searching.innerHTML += `
-            <div class="container">
+
+function displayUserData(user, repos) {
+    const repositories = repos.map(repo => `<li><a href="${repo.html_url}">${repo.name}</a></li>`).join('');
+    searching.innerHTML = `
+        <div class="container">
             <div class="row">
-                <div class="col s3 offset-s1"><img src="${respons.avatar_url}" class="responsive-img image" alt="profil"></div>
-                
+                <div class="col s3 offset-s1"><img src="${user.avatar_url}" class="responsive-img image" alt="profile"></div>
                 <div class="col s3">
                     <p>
-                    <strong>Name:</strong> ${respons.login} <br><br> 
-                    <strong>Github:</strong> <a href="${respons.html_url}"> Link </a> <br><br> 
-                    <strong>Public Repos:</strong> <span>${respons.public_repos}</span>
+                        <strong>Name:</strong> ${user.login} <br><br> 
+                        <strong>Github:</strong> <a href="${user.html_url} target="_blank""> Profile_Link </a> <br><br> 
+                        <strong>Public Repos:</strong> <span>${user.public_repos}</span>
                     </p> 
                 </div> 
                 <div class="col s3 center">
-                <a class='dropdown btn' href='#' data-target='dropdown1'>Repositorie</a>
-        
-                <!-- Dropdown Structure -->
-                <ul class='content-drop'>${urlAllRepos(data)}</ul>
-            </div>
+                    <a class=' dropdown btn' href='#' data-target='dropdown1'>Repositories</a>
+                    <ul class='content-drop '>${repositories}</ul>
                 </div>
             </div>
-        `;
-        })
-    })
+        </div>`;
 }
-
-function urlAllRepos(repos){
-    let mesRepo;
-    for (let i = 0; i < repos.length; i++) {
-        mesRepo += `<li><a href="${repos[i].html_url}">${repos[i].name}</a> <br/></li> `
-    }
-    // debut de chaine indefined pour supprimer
-    return mesRepo.replace("undefined","");
-}
-
-
 
 submit.addEventListener('click', function (e) {
-    e.preventDefault()
-    userGithub = input.value
-    input.value = ''
-    search(userGithub)
-})
-
-
-// pour pourvoir afficher les ripos quand on click
-searching.addEventListener('click', e=> {
     e.preventDefault();
-    if(e.target.classList.contains('dropdown')){
+    const username = input.value.trim();
+    if (username !== '') {
+        search(username);
+    }
+});
+
+// Event listener for showing repositories when clicked
+searching.addEventListener('click', e => {
+    e.preventDefault();
+    if (e.target.classList.contains('dropdown')) {
         e.target.nextElementSibling.classList.toggle('activeUrl');
     }
-})
+});
